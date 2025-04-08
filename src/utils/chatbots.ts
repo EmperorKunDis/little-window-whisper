@@ -10,6 +10,7 @@ export interface Chatbot {
   greeting: string;
   windowColor: string;
   messages: Message[];
+  position?: { x: number; y: number }; // Adding the position property as optional
 }
 
 export interface Message {
