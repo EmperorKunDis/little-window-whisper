@@ -34,11 +34,11 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 p-4 relative">
+    <div className="min-h-screen bg-dark-gradient p-4 relative">
       {/* App title */}
       <div className="text-center mb-8 mt-4">
-        <h1 className="text-3xl font-bold text-gray-800">Little Chatbot Windows</h1>
-        <p className="text-gray-600 mt-2">
+        <h1 className="text-3xl font-bold text-white">Little Chatbot Windows</h1>
+        <p className="text-gray-300 mt-2">
           Click the button below to add chatbot windows to your workspace
         </p>
       </div>
@@ -47,18 +47,18 @@ const Index = () => {
       <div className="fixed bottom-6 right-6 z-50">
         <Popover>
           <PopoverTrigger asChild>
-            <Button className="h-14 w-14 rounded-full bg-blue-500 hover:bg-blue-600 shadow-lg">
+            <Button className="h-14 w-14 rounded-full bg-dark-accent hover:bg-dark-accent/90 shadow-lg">
               <Plus size={24} />
             </Button>
           </PopoverTrigger>
-          <PopoverContent className="w-80" align="end">
+          <PopoverContent className="w-80 border-dark-accent/50 bg-dark-secondary" align="end">
             <div className="space-y-2 p-2">
-              <h3 className="font-medium text-sm mb-3">Add a new chatbot</h3>
+              <h3 className="font-medium text-sm mb-3 text-white">Add a new chatbot</h3>
               <div className="grid grid-cols-3 gap-2">
                 {chatbots.map((chatbot) => (
                   <button
                     key={chatbot.id}
-                    className="flex flex-col items-center justify-center p-3 rounded-lg hover:bg-gray-100 transition-colors"
+                    className="flex flex-col items-center justify-center p-3 rounded-lg hover:bg-dark text-white transition-colors"
                     onClick={() => {
                       addChatbot(chatbot);
                     }}
@@ -101,15 +101,15 @@ const Index = () => {
                 />
               ))}
             </div>
-            <h2 className="text-xl font-semibold text-gray-700 mb-2">
+            <h2 className="text-xl font-semibold text-white mb-2">
               Your workspace is empty
             </h2>
-            <p className="text-gray-500 mb-6">
+            <p className="text-gray-300 mb-6">
               Click the + button in the bottom right to add chatbot windows to your workspace
             </p>
             <Button 
               onClick={() => addChatbot(chatbots[0])}
-              className="bg-blue-500 hover:bg-blue-600"
+              className="bg-dark-accent hover:bg-dark-accent/90 text-white"
             >
               Add your first chatbot
             </Button>

@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -61,6 +62,13 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
+				},
+				dark: {
+					DEFAULT: '#1A1A3A', // Dark purple similar to the reference image
+					foreground: '#FFFFFF',
+					accent: '#8A5CF5', // Purple accent from the image
+					accentLight: '#B9A2FF', // Lighter purple accent
+					secondary: '#282852', // Slightly lighter than main dark
 				}
 			},
 			borderRadius: {
@@ -89,6 +97,9 @@ export default {
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
 				'accordion-up': 'accordion-up 0.2s ease-out'
+			},
+			backgroundImage: {
+				'dark-gradient': 'linear-gradient(to bottom right, #1A1A3A, #0F0F2A)',
 			}
 		}
 	},

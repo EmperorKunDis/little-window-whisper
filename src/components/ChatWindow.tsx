@@ -1,4 +1,3 @@
-
 import React, { useState, useRef, useEffect } from "react";
 import { X, Minus, MaximizeIcon, MinimizeIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -27,7 +26,6 @@ const ChatWindow: React.FC<ChatWindowProps> = ({
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const [isTyping, setIsTyping] = useState(false);
 
-  // Auto-scroll to bottom on new messages
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
@@ -47,7 +45,6 @@ const ChatWindow: React.FC<ChatWindowProps> = ({
     const handleMouseMove = (e: MouseEvent) => {
       if (!isDragging) return;
       
-      // Set new position based on mouse position and offset
       setPosition({
         x: e.clientX - dragOffset.x,
         y: e.clientY - dragOffset.y,
@@ -70,7 +67,6 @@ const ChatWindow: React.FC<ChatWindowProps> = ({
   }, [isDragging, dragOffset]);
 
   const handleSendMessage = (content: string) => {
-    // Add user message
     const userMessage: Message = {
       id: Date.now().toString(),
       content,
@@ -81,7 +77,6 @@ const ChatWindow: React.FC<ChatWindowProps> = ({
     setMessages((prev) => [...prev, userMessage]);
     setIsTyping(true);
     
-    // Simulate bot thinking and then respond
     setTimeout(() => {
       const botResponse: Message = {
         id: (Date.now() + 1).toString(),
@@ -92,14 +87,13 @@ const ChatWindow: React.FC<ChatWindowProps> = ({
       
       setMessages((prev) => [...prev, botResponse]);
       setIsTyping(false);
-    }, 1000 + Math.random() * 1000); // Random delay between 1-2 seconds
+    }, 1000 + Math.random() * 1000);
   };
 
   const toggleMinimize = () => {
     setIsMinimized(!isMinimized);
   };
 
-  // Set a z-index for proper stacking of multiple windows
   const zIndex = 1000;
 
   return (
@@ -107,7 +101,7 @@ const ChatWindow: React.FC<ChatWindowProps> = ({
       ref={windowRef}
       className={cn(
         "absolute rounded-lg shadow-lg border overflow-hidden transition-all duration-200 ease-in-out animate-bounce-in",
-        chatbot.windowColor,
+        "border-dark-accent/30 bg-dark-secondary",
         isMinimized ? "w-64 h-12" : "w-80 h-96"
       )}
       style={{
@@ -117,11 +111,9 @@ const ChatWindow: React.FC<ChatWindowProps> = ({
         cursor: isDragging ? "grabbing" : "default",
       }}
     >
-      {/* Header - Always visible for dragging */}
       <div
         className={cn(
-          "px-3 py-2 flex items-center justify-between bg-white border-b",
-          chatbot.avatarColor.replace("bg-", "bg-opacity-10 border-b-"),
+          "px-3 py-2 flex items-center justify-between bg-dark border-b border-dark-accent/30",
           isDragging ? "cursor-grabbing" : "cursor-grab"
         )}
         onMouseDown={handleDragStart}
@@ -133,30 +125,29 @@ const ChatWindow: React.FC<ChatWindowProps> = ({
             icon={chatbot.iconComponent}
             size="sm"
           />
-          <span className="font-medium text-gray-800 text-sm">
+          <span className="font-medium text-white text-sm">
             {chatbot.name}
           </span>
         </div>
         <div className="flex items-center">
           <button 
             onClick={toggleMinimize}
-            className="text-gray-500 hover:text-gray-700 p-1"
+            className="text-gray-300 hover:text-white p-1"
           >
             {isMinimized ? <MaximizeIcon size={14} /> : <Minus size={14} />}
           </button>
           <button 
             onClick={onClose}
-            className="text-gray-500 hover:text-red-500 p-1 ml-1"
+            className="text-gray-300 hover:text-red-400 p-1 ml-1"
           >
             <X size={14} />
           </button>
         </div>
       </div>
 
-      {/* Chat content - Only visible when not minimized */}
       {!isMinimized && (
         <>
-          <div className="p-3 overflow-y-auto h-[calc(100%-96px)] bg-white">
+          <div className="p-3 overflow-y-auto h-[calc(100%-96px)] bg-dark-secondary">
             {messages.map((message, index) => (
               <ChatMessage
                 key={message.id}
@@ -169,9 +160,9 @@ const ChatWindow: React.FC<ChatWindowProps> = ({
             
             {isTyping && (
               <div className="flex gap-2 pl-10 animate-pulse-slow">
-                <div className="w-2 h-2 rounded-full bg-gray-300"></div>
-                <div className="w-2 h-2 rounded-full bg-gray-300"></div>
-                <div className="w-2 h-2 rounded-full bg-gray-300"></div>
+                <div className="w-2 h-2 rounded-full bg-dark-accentLight/50"></div>
+                <div className="w-2 h-2 rounded-full bg-dark-accentLight/50"></div>
+                <div className="w-2 h-2 rounded-full bg-dark-accentLight/50"></div>
               </div>
             )}
             

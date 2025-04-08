@@ -37,8 +37,8 @@ const ChatMessage: React.FC<ChatMessageProps> = ({
         className={cn(
           "rounded-2xl py-2 px-3 max-w-[80%]",
           isUser
-            ? "bg-blue-500 text-white rounded-tr-none"
-            : "bg-gray-200 text-gray-800 rounded-tl-none"
+            ? "bg-dark-accent text-white rounded-tr-none"
+            : "bg-dark text-gray-100 rounded-tl-none"
         )}
       >
         <p className="text-sm">{message.content}</p>
